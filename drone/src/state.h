@@ -7,44 +7,15 @@
 class State {
 public:
     State() {
-        // Default starting state
-        inDarkness = false;
-        userSignal = nullptr;
-
-        speed = 0;
-        turningAngle = 0;
-
-        temperature = 0;
-        humidity = 0;
-
-        isLightAutomatic = true;
-        isHeadlightsOn = false;
-        isHazardsOn = false;
-        indicators = off;
-
-        isHornOn = false;
     }
 
     // Sensor results
     float speed;
-    int8_t turningAngle;
+    float altitude;
 
-    // Environment
-    bool inDarkness;
-    float temperature;
-    float humidity;
+    // Incoming signal from controller
+    Signal* signal;
 
-    // Light states
-    bool isLightAutomatic;
-    bool isHeadlightsOn;
-    bool isHazardsOn;
-    direction indicators;
-
-    // Horn
-    bool isHornOn;
-
-    // Signal from user controller
-    Signal* userSignal;
 };
 
 #endif

@@ -43,20 +43,7 @@ The following is a list of all the controls needed and their position in the pay
             <td>5</td>
         </tr>
         <tr>
-            <td>6</td>
-            <td rowspan=2>Rotation (Left/Right)</td>
-            <td rowspan=2>int16</td>
-        </tr>
-        <tr>
-            <td>7</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>BEEEEEEP</td>
-            <td>bool</td>
-        </tr>
-        <tr>
-            <td>9-31</td>
+            <td>6-31</td>
             <td><i>Not in use</i></td>
             <td></td>
         </tr>
@@ -92,12 +79,11 @@ The following is a list of all the sensor and state data that will be sent back 
         </tr>
         <tr>
             <td>4</td>
-            <td rowspan=1>Turning Angle</td>
-            <td rowspan=1>int8</td>
+            <td rowspan=4>Altitude</td>
+            <td rowspan=4>float</td>
         </tr>
         <tr>
             <td>5</td>
-            <td rowspan=3><i>Unused</i></td>
         </tr>
         <tr>
             <td>6</td>
@@ -106,60 +92,7 @@ The following is a list of all the sensor and state data that will be sent back 
             <td>7</td>
         </tr>
         <tr>
-            <td>8</td>
-            <td>Indicators (Left/Right/Off)</td>
-            <td>int8</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Is Auto Headlights On?</td>
-            <td>bool</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Is Manual Headlights On?</td>
-            <td>bool</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>Is Hazard Lights on?</td>
-            <td>bool</td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td rowspan=4>Temperature</td>
-            <td rowspan=4>float</td>
-        </tr>
-        <tr>
-            <td>13</td>
-        </tr>
-        <tr>
-            <td>14</td>
-        </tr>
-        <tr>
-            <td>15</td>
-        </tr>
-        <tr>
-            <td>16</td>
-            <td rowspan=4>Humidity</td>
-            <td rowspan=4>float</td>
-        </tr>
-        <tr>
-            <td>17</td>
-        </tr>
-        <tr>
-            <td>18</td>
-        </tr>
-        <tr>
-            <td>19</td>
-        </tr>
-        <tr>
-            <td>20</td>
-            <td>Is Horn on?</td>
-            <td>bool</td>
-        </tr>
-        <tr>
-            <td>21-31</td>
+            <td>8-31</td>
             <td><i>Not in use</i></td>
             <td></td>
         </tr>

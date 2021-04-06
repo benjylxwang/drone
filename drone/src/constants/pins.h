@@ -2,37 +2,14 @@
 #define PINS_H
 
 // ------------- PINS ----------------
-// == Lights
-#define LIGHTS_HEADLIGHTS_PIN 4
-#define LIGHTS_BRAKELIGHTS_PIN 2
-#define LIGHTS_INDICATOR_LEFT_PIN 7 
-#define LIGHTS_INDICATOR_RIGHT_PIN 8
-
-// == Beep
-#define BEEP_PIN 6
-
 // == Sensors
-#define PHOTORESISTOR_PIN A0
-#define DHT_PIN 40
-#define THERMISTOR_PIN A1
+
 
 // == Motors - Throttle
-#define MOTOR_ENABLE_PIN 3
-#define MOTOR_IN_A A4
-#define MOTOR_IN_B A5
-
-// == Servo Motor - Steering
-#define STEERING_PIN 5
-
-// == Speedometer
-#define SPEEDOMETER_DIGIT_1 25
-#define SPEEDOMETER_DIGIT_2 24
-#define SPEEDOMETER_DIGIT_3 23
-#define SPEEDOMETER_DIGIT_4 22
-
-#define SPEEDOMETER_DATA 26
-#define SPEEDOMETER_LATCH 27
-#define SPEEDOMETER_CLOCK 28
+#define MOTOR_FRONT_LEFT_PIN 0
+#define MOTOR_FRONT_RIGHT_PIN 1
+#define MOTOR_BACK_LEFT_PIN 2
+#define MOTOR_BACK_RIGHT_PIN 3
 
 // == RF Receiver
 #define RF_CE_PIN 49

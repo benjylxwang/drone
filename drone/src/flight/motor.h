@@ -7,17 +7,15 @@
 class Motor
 {
 public:
-    Motor(byte enablePin, byte inAPin, byte inBPin);
+    Motor(byte frontLeftPin, byte frontRightPin, byte backLeftPin, byte backRightPin);
 
     void setup();
     void update(State state);
 
 private:
-    byte enable;
-    byte inA;
-    byte inB;
+    byte pins[MOTOR_COUNT];
 
-    void setMotorSpeed(int speed);
+    void setMotorSpeed(byte motor, int speed);
 };
 
 #endif

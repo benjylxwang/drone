@@ -1,21 +1,6 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-// ===== Light Settings
-#define LIGHTS_OFF LOW
-#define LIGHTS_DIM_LEVEL 20 // 0 to 255
-#define LIGHTS_BRIGHT_LEVEL 255 // 0 to 255
-
-#define LIGHT_INDICATOR_FLASH_PERIOD_MILLISECONDS 500UL // must be UL, amount of time between indicator flashes
-
-// ===== BEEP Settings
-#define BUZZER_FREQUENCY 400
-
-// ===== Sensor Settings
-#define AMBIENT_LIGHT_THRESHOLD 700
-#define IN_DARKNESS_MINIMUM_TIME 2000
-#define TEMPERATURE_SENSOR_POLLING_RATE 10000
-
 // ===== Controller Settings
 #define RF_CONTROLLER_ID 0
 #define RF_CAR_ID 1
@@ -23,5 +8,10 @@
 
 // ===== Motor Settings
 #define MOTOR_MAX_SPEED 255
+#define MOTOR_COUNT 4
+#define MOTOR_FRONT_LEFT 0
+#define MOTOR_FRONT_RIGHT 1
+#define MOTOR_BACK_LEFT 2
+#define MOTOR_BACK_RIGHT 3
 
 #endif

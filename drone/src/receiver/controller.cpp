@@ -15,8 +15,8 @@ void Controller::setup()
 void Controller::update(State &state)
 {
     // Wipe previous usersignal
-    if (state.userSignal)
-        free(state.userSignal);
+    if (state.signal)
+        free(state.signal);
 
     // Prepare ack - will be sent back if radio data is received
     prepareAck(state);
@@ -28,7 +28,7 @@ void Controller::update(State &state)
     }
     else
     {
-        state.userSignal = nullptr;
+        state.signal = nullptr;
     }
 }
 
@@ -36,52 +36,25 @@ void Controller::parseData(State &state)
 {
     char data[32] = {0};
     radio.readData(&data);
-    state.userSignal = (Signal *)calloc(1, sizeof(Signal));
+    state.signal = (Signal *) calloc(1, sizeof(Signal));
 
     // === Process data === Change stuff here if changing protocol
-    // Steering data
-    int16_t *steering = (int16_t *)&data[0];
-    state.userSignal->forwardsMotion = *steering;
-    steering++;
-    state.userSignal->rightMotion = *steering;
-
-    // Lights data
-    int8_t *indicators = (int8_t *)&data[4];
-    state.userSignal->indicator = (*indicators == 0) ? off : (*indicators < 0) ? left
-                                                                               : right;
-    // Headlights
-    bool *b = (bool *)&data[5];
-    state.userSignal->toggleAutoLights = *b;
-    b++;
-    state.userSignal->headlightsOn = *b;
-
-    // Hazard lights
-    b++;
-    state.userSignal->hazard = *b;
-
-    // Beeper
-    b++;
-    state.userSignal->beep = *b;
+    // motion data
+    int16_t *motion = (int16_t *)&data[0];
+    state.signal->forwardsMotion = *motion;
+    motion++;
+    state.signal->rightMotion = *motion;
+    motion++;
+    state.signal->upMotion = *motion;
 
 #if VERBOSE
     Serial.print("Motion: (");
-    Serial.print(state.userSignal->forwardsMotion);
+    Serial.print(state.signal->forwardsMotion);
     Serial.print(", ");
-    Serial.print(state.userSignal->rightMotion);
-    Serial.print(") Indicator: ");
-    Serial.print(state.userSignal->indicator);
-    Serial.print(" Auto Lights: ");
-    Serial.print(state.userSignal->toggleAutoLights);
-    Serial.print(" Headlights: ");
-    Serial.print(state.userSignal->headlightsOn);
-    Serial.print(" Hazard: ");
-    Serial.print(state.userSignal->hazard);
-    Serial.print(" Beep: ");
-    Serial.print(state.userSignal->beep);
-    Serial.print(" T: ");
-    Serial.print(state.temperature);
-    Serial.print(" H: ");
-    Serial.print(state.humidity);
+    Serial.print(state.signal->rightMotion);
+    Serial.print(", ");
+    Serial.print(state.signal->upMotion);
+    Serial.print(")");
     Serial.println();
 #endif
 }
@@ -90,33 +63,11 @@ void Controller::prepareAck(State& state) {
     char data[32] = {0};
 
     // Fill data structure according to protocol
-    // Speed and turning angle
+    // Position/Rotation
     float* f = (float*) &data[0];
     *f = state.speed;
-    int8_t *i8 = (int8_t *)&data[4];
-    *i8 = state.turningAngle;
-
-    // Indicators
-    i8 = (int8_t *) &data[8];
-    *i8 = state.indicators == off ? 0 : state.indicators == left ? -1 : 1;
-
-    // Light data
-    byte* b = (byte*) &data[9];
-    *b = state.isLightAutomatic;
-    b++;
-    *b = state.isHeadlightsOn;
-    b++;
-    *b = state.isHazardsOn;
-
-    // Temperature and Humidity
-    f = (float*) &data[12];
-    *f = state.temperature;
     f++;
-    *f = state.humidity;
-
-    // Beep state
-    b = (byte*) &data[20];
-    *b = state.isHornOn;
+    *f = state.altitude;
 
     // Add new ack data to pipeline and remove any old data in the pipeline
     radio.addAckData(data, 32, true);
