@@ -18,15 +18,6 @@ void Motor::setup()
     }
 }
 
-void Motor::update(State state)
-{
-    if (state.userSignal)
-    {
-        int16_t input = state.userSignal->forwardsMotion;
-        setMotorSpeed(map(input, -CONTROLLER_ANALOG_MAX_VALUE, CONTROLLER_ANALOG_MAX_VALUE, -MOTOR_MAX_SPEED, MOTOR_MAX_SPEED));
-    }
-}
-
 void Motor::setMotorSpeed(byte motor, int speed)
 {
     analogWrite(pins[motor], speed);

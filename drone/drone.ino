@@ -29,6 +29,7 @@ void setup()
 {
 #if VERBOSE
     Serial.begin(SERIAL_BAUD_RATE);
+    Serial.println(VERSION);
 #endif
     sensors.setup();
     flightControl.setup();
@@ -39,6 +40,7 @@ void loop()
 {
     // Read sensors first to get correct state object
     sensors.update(gState);
+    gState.print();
 
     // Get controls
     controller.update(gState);

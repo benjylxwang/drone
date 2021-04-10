@@ -3,7 +3,8 @@
 
 // ------------- PINS ----------------
 // == Sensors
-
+#define I2C_SDA 4
+#define I2C_SCL 5
 
 // == Motors - Throttle
 #define MOTOR_FRONT_LEFT_PIN 0

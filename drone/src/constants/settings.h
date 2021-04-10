@@ -14,4 +14,7 @@
 #define MOTOR_BACK_LEFT 2
 #define MOTOR_BACK_RIGHT 3
 
+// ==== Sensor Settings
+#define ALTITUDE 50.0
+
 #endif
