@@ -13,8 +13,12 @@ public:
     // Sensor results
     float speed;
     double altitude;
+    double pitch;
+    double roll;
     // Gyro
     int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
+    // Pressure sensor
+    double temperature, pressure;
 
     // Incoming signal from controller
     Signal* signal;
@@ -22,12 +26,8 @@ public:
     void print() {
         // display tab-separated accel/gyro x/y/z values
         Serial.print(altitude); Serial.print("\t");
-        Serial.print(AcX); Serial.print("\t");
-        Serial.print(AcY); Serial.print("\t");
-        Serial.print(AcZ); Serial.print("\t");
-        Serial.print(GyX); Serial.print("\t");
-        Serial.print(GyY); Serial.print("\t");
-        Serial.println(GyZ);
+        Serial.print(pitch); Serial.print("\t");
+        Serial.println(roll);
     }
 
 };

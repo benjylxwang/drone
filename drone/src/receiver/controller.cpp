@@ -1,5 +1,6 @@
 #include "controller.h"
 #include <Arduino.h>
+#include <SPI.h>
 
 Controller::Controller(byte cePin_, byte csPin_)
 {

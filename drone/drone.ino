@@ -3,9 +3,9 @@
 #include "constants.h"
 
 #include "src/state.h"
+#include "src/flight/flightController.h"
 #include "src/sensors/sensors.h"
 
-#include "src/flight/flightController.h"
 
 // Global state
 State gState;
@@ -27,23 +27,25 @@ Controller controller(RF_CE_PIN, RF_CSN_PIN);
 
 void setup()
 {
-#if VERBOSE
-    Serial.begin(SERIAL_BAUD_RATE);
-    Serial.println(VERSION);
-#endif
+    #if VERBOSE
+        Serial.begin(SERIAL_BAUD_RATE);
+    #endif
     sensors.setup();
     flightControl.setup();
-    controller.setup();
+    // controller.setup();
 }
 
 void loop()
 {
+    #if VERBOSE
+        Serial.println(VERSION);
+    #endif
     // Read sensors first to get correct state object
     sensors.update(gState);
     gState.print();
 
     // Get controls
-    controller.update(gState);
+    // controller.update(gState);
 
     // Then reflect changes in state in hardware
     flightControl.update(gState);
