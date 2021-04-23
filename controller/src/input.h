@@ -11,14 +11,7 @@ public:
     // Controls
     int16_t throttle;
     int16_t turning;
-
-    int8_t indication;
-
-    bool toggleAutoHeadlights;
-    bool toggleHeadlights;
-    bool toggleHazardlights;
-
-    bool beepHorn;
+    int16_t vertical;
 };
 
 #endif

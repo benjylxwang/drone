@@ -10,26 +10,36 @@ Controller::Controller(byte cePin_, byte csPin_)
 
 void Controller::setup()
 {
-    radio.init(RF_CAR_ID, cePin, csnPin);
+    SPI.setSCK(RF_SCK_PIN);
+    SPI.setRX(RF_MISO_RX_PIN);
+    SPI.setTX(RF_MOSI_TX_PIN);
+    SPI.setCS(RF_CSN_PIN);
+    success = radio.init(RF_DRONE_ID, cePin, csnPin);
 }
 
 void Controller::update(State &state)
 {
-    // Wipe previous usersignal
-    if (state.signal)
-        free(state.signal);
+    if (success) {
+        // Wipe previous usersignal
+        if (state.signal)
+            free(state.signal);
 
-    // Prepare ack - will be sent back if radio data is received
-    prepareAck(state);
-    
-    // If we have data, fill, otherwise, set state usersignal to null
-    if (radio.hasData())
-    {
-        parseData(state);
-    }
-    else
-    {
-        state.signal = nullptr;
+        // Prepare ack - will be sent back if radio data is received
+        prepareAck(state);
+        
+        // If we have data, fill, otherwise, set state usersignal to null
+        if (radio.hasData())
+        {
+            parseData(state);
+        }
+        else
+        {
+            state.signal = nullptr;
+        }
+    } else {
+        #if VERBOSE
+        Serial.println("Radio failed to setup!");
+        #endif
     }
 }
 
@@ -64,11 +74,17 @@ void Controller::prepareAck(State& state) {
     char data[32] = {0};
 
     // Fill data structure according to protocol
-    // Position/Rotation
+    // Speed
     float* f = (float*) &data[0];
     *f = state.speed;
-    f++;
-    *f = state.altitude;
+
+    // Altitude, pitch, roll
+    double* d = (double*) &data[4];
+    *d = state.altitude;
+    d++;
+    *d = state.pitch;
+    d++;
+    *d = state.roll;
 
     // Add new ack data to pipeline and remove any old data in the pipeline
     radio.addAckData(data, 32, true);

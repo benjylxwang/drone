@@ -20,10 +20,6 @@ private:
     SFE_BMP180 pressure;
     double readPressure(State& state);
     double baseline;
-
-    // Smoothing
-    int16_t smoothing(int16_t input, int16_t previous, double alpha);
-    double smoothing(double input, double previous, double alpha);
 };
 
 #endif

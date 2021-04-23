@@ -3,23 +3,21 @@
 
 // ------------- PINS ----------------
 // == Sensors
-#define I2C_SDA 4
-#define I2C_SCL 5
+#define I2C_SDA 12
+#define I2C_SCL 13
 
 // == Motors - Throttle
-#define MOTOR_FRONT_LEFT_PIN 0
-#define MOTOR_FRONT_RIGHT_PIN 1
-#define MOTOR_BACK_LEFT_PIN 2
-#define MOTOR_BACK_RIGHT_PIN 3
+#define MOTOR_FRONT_LEFT_PIN 18
+#define MOTOR_FRONT_RIGHT_PIN 19
+#define MOTOR_BACK_LEFT_PIN 20
+#define MOTOR_BACK_RIGHT_PIN 21
 
-// == RF Receiver
-#define RF_CE_PIN 49
-#define RF_CSN_PIN 53
-
-// MOSI pins for receiver (These are fixed for different arduino types: we are using an Arduino Mega2560)
-#define RF_SCK_PIN 52
-#define RF_MISO PIN 50
-#define RF_MOSI_PIN 51
+// == RF Receiver - SPI Pins
+#define RF_CE_PIN 1
+#define RF_SCK_PIN 2
+#define RF_MOSI_TX_PIN 3
+#define RF_MISO_RX_PIN 4
+#define RF_CSN_PIN 5
 
 
 #endif

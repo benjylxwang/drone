@@ -15,19 +15,24 @@ void FakeController::setup() {
 }
 
 void FakeController::update(State& state) {
-    byte instruction = Serial.read();
+    // byte instruction = Serial.read();
 
+    // if (state.signal == NULL) state.signal = (Signal*) calloc(1, sizeof(Signal));
+
+    // switch (instruction)
+    // {
+    // case 's': // Put a fake speed value in
+    //     state.speed = 75.23;
+    //     break;
+    // case 'S': // 'Stop' vehicle
+    //     state.speed = 0;
+    //     break;
+    // default:
+    //     break;
+    // }
+
+    // For now just set upwards throttle
     if (state.signal == NULL) state.signal = (Signal*) calloc(1, sizeof(Signal));
 
-    switch (instruction)
-    {
-    case 's': // Put a fake speed value in
-        state.speed = 75.23;
-        break;
-    case 'S': // 'Stop' vehicle
-        state.speed = 0;
-        break;
-    default:
-        break;
-    }
+    state.signal->upMotion = 1; // slowly going upwards
 }

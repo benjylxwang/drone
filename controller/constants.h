@@ -11,17 +11,7 @@
 // = movement pins
 #define THROTTLE_PIN A1
 #define TURNING_PIN A2
-
-// = Light controls
-#define TOGGLE_HEADLIGHTS 7
-#define TOGGLE_AUTO_LIGHTS 6
-#define TOGGLE_HAZARD_LIGHTS 5
-#define INDICATOR_LEFT 3
-#define INDICATOR_RIGHT 4
-
-
-// = Other controls
-#define BEEP_PIN 8
+#define VERTICAL_PIN A3
 
 // MOSI pins for sender (These are fixed for different arduino types)
 #define RF_SCK_PIN 13
@@ -30,9 +20,6 @@
 
 // ==== RF Sender Settings
 #define RF_CONTROLLER_ID 0
-#define RF_CAR_ID 1
-
-#define DISPLAY_UPDATE_RATE 10
-#define DISPLAY_INDICATOR_FLASH_RATE 1000
+#define RF_DRONE_ID 3
 
 #endif

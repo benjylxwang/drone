@@ -6,6 +6,7 @@
 #include "sensors.h"
 
 #include "../../constants.h"
+#include "../smoothing.h"
 
 Sensors::Sensors()
 {
@@ -72,16 +73,6 @@ void Sensors::readGyro(State &state)
     // Calculate pitch/roll values
     state.pitch = 180 * atan(state.AcX / sqrt(state.AcY * state.AcY + state.AcZ * state.AcZ)) / M_PI;
     state.roll = 180 * atan(state.AcY / sqrt(state.AcX * state.AcX + state.AcZ * state.AcZ)) / M_PI;
-}
-
-int16_t Sensors::smoothing(int16_t input, int16_t previous, double alpha)
-{
-    return alpha * input + (1 - alpha) * previous;
-}
-
-double Sensors::smoothing(double input, double previous, double alpha)
-{
-    return alpha * input + (1 - alpha) * previous;
 }
 
 double Sensors::readPressure(State& state)

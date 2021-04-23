@@ -15,6 +15,7 @@ public:
     double altitude;
     double pitch;
     double roll;
+
     // Gyro
     int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
     // Pressure sensor

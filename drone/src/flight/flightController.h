@@ -11,9 +11,14 @@ public:
     FlightController();
 
     void setup();
-    void update(State state);
+    void update(State current);
 private:
     Motor motor;
+
+    double targetRoll;
+    double targetPitch;
+
+    int calculateAdjustment(double current, double target);
 };
 
 #endif

@@ -79,8 +79,8 @@ The following is a list of all the sensor and state data that will be sent back 
         </tr>
         <tr>
             <td>4</td>
-            <td rowspan=4>Altitude</td>
-            <td rowspan=4>float</td>
+            <td rowspan=8>Altitude</td>
+            <td rowspan=8>double</td>
         </tr>
         <tr>
             <td>5</td>
@@ -92,7 +92,71 @@ The following is a list of all the sensor and state data that will be sent back 
             <td>7</td>
         </tr>
         <tr>
-            <td>8-31</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td rowspan=8>Pitch</td>
+            <td rowspan=8>double</td>
+        </tr>
+        <tr>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>19</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td rowspan=8>Roll</td>
+            <td rowspan=8>double</td>
+        </tr>
+        <tr>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>26</td>
+        </tr>
+        <tr>
+            <td>27</td>
+        </tr>
+        <tr>
+            <td>28-31</td>
             <td><i>Not in use</i></td>
             <td></td>
         </tr>

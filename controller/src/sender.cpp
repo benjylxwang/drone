@@ -15,33 +15,21 @@ void Sender::setup()
     radio.init(RF_CONTROLLER_ID, cePin, csnPin);
 }
 
-void Sender::send(Input& input, State& carState)
+void Sender::send(Input& input, State& state)
 {
     // Format input object as protocol payload and send
     char data[32] = {0};
 
-    // Throttle and turning (int16_t)
+    // Throttle turning vertical(int16_t)
     int16_t* i16 = (int16_t*) &data[0];
     *i16 = input.throttle;
     i16++;
     *i16 = input.turning;
-
-    // Indicators
-    int8_t* i8 = (int8_t*) &data[4];
-    *i8 = input.indication;
-
-    // Lights and Beep
-    bool* b = (bool*) &data[5];
-    *b = input.toggleAutoHeadlights;
-    b++;
-    *b = input.toggleHeadlights;
-    b++;
-    *b = input.toggleHazardlights;
-    b++;
-    *b = input.beepHorn;
+    i16++;
+    *i16 = input.vertical;   
 
     // Send payload
-    radio.send(RF_CAR_ID, &data, sizeof(data));
+    radio.send(RF_DRONE_ID, &data, sizeof(data));
 
     // Check for sensor data in ack
     if (radio.hasAckData()) {
@@ -50,29 +38,14 @@ void Sender::send(Input& input, State& carState)
         radio.readData(&ackData);
 
         // Parse data into sensor state object
-        // Speed and turning angle
+        // Speed
         float* f = (float*) &ackData[0];
-        carState.speed = *f++;
-        int8_t* i8 = (int8_t*) &ackData[4];
-        carState.turningAngle = *i8;
-
-        // Indicators
-        i8 = (int8_t*) &ackData[8];
-        carState.indicators = *i8;
-
-        // Lights
-        bool* b = (bool*) &ackData[9];
-        carState.isLightAutomatic = *b++;
-        carState.isHeadlightsOn = *b++;
-        carState.isHazardsOn = *b++;
-
-        // Temp and Humidity
-        f = (float*) &ackData[12];
-        carState.temperature = *f++;
-        carState.humidity = *f++;
-
-        // Horn
-        b = (bool*) &ackData[20];
-        carState.isHornOn = *b;
+        state.speed = *f++;
+        
+        // Altitude, Pitch, Roll
+        double* d = (double*) &ackData[4];
+        state.altitude = *d++;
+        state.pitch = *d++;
+        state.roll = *d++;
     }
 }

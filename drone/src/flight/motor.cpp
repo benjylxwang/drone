@@ -1,5 +1,6 @@
 #include "motor.h"
 
+#include "../smoothing.h"
 #include "../../constants.h"
 
 Motor::Motor(byte frontLeftPin, byte frontRightPin, byte backLeftPin, byte backRightPin)
@@ -12,7 +13,8 @@ Motor::Motor(byte frontLeftPin, byte frontRightPin, byte backLeftPin, byte backR
 
 void Motor::setup()
 {
-    for (int i = 0; i < MOTOR_COUNT; i++) {
+    for (int i = 0; i < MOTOR_COUNT; i++)
+    {
         pinMode(pins[i], OUTPUT);
         setMotorSpeed(i, 0);
     }
@@ -20,5 +22,19 @@ void Motor::setup()
 
 void Motor::setMotorSpeed(byte motor, int speed)
 {
-    analogWrite(pins[motor], speed);
+    int smoothedSpeed = smoothing(speed, previousSpeeds[motor], MOTOR_SMOOTHING_FACTOR);
+    analogWrite(pins[motor], smoothedSpeed);
+    previousSpeeds[motor] = speeds[motor];
+    speeds[motor] = smoothedSpeed;
+}
+
+int Motor::getMotorSpeed(byte motor)
+{
+    return speeds[motor];
+}
+
+void Motor::adjustMotorSpeed(byte motor, int speedChange)
+{
+    int current = speeds[motor];
+    setMotorSpeed(motor, current + speedChange);
 }

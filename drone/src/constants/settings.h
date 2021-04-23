@@ -3,7 +3,7 @@
 
 // ===== Controller Settings
 #define RF_CONTROLLER_ID 0
-#define RF_CAR_ID 1
+#define RF_DRONE_ID 3
 #define CONTROLLER_ANALOG_MAX_VALUE 512
 
 // ===== Motor Settings
@@ -13,6 +13,8 @@
 #define MOTOR_FRONT_RIGHT 1
 #define MOTOR_BACK_LEFT 2
 #define MOTOR_BACK_RIGHT 3
+#define MOTOR_ADJUSTMENT_CONSTANT 100
+#define MOTOR_SMOOTHING_FACTOR 0.9
 
 // ==== Sensor Settings
 #define ALTITUDE 50.0

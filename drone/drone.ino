@@ -45,7 +45,7 @@ void loop()
     gState.print();
 
     // Get controls
-    // controller.update(gState);
+    controller.update(gState);
 
     // Then reflect changes in state in hardware
     flightControl.update(gState);
