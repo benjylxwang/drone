@@ -15,21 +15,28 @@ void FlightController::setup()
 
 void FlightController::update(State current)
 {
+    // Set target pitch and roll based on left/right/front/back commands
+    targetPitch = map(current.signal->forwardsMotion, -512, 511, BACKWARD_TARGET_ANGLE, FORWARD_TARGET_ANGLE);
+    targetRoll = map(current.signal->rightMotion, -512, 511, LEFT_TARGET_ANGLE, RIGHT_TARGET_ANGLE);
+
+    // Up down adjustment
+    int thrust = map(current.signal->upMotion, -512, 512, -MOTOR_MAX_UPWARDS_CHANGE, MOTOR_MAX_UPWARDS_CHANGE);
+
     // Adjust motors based on current state to be closer to target pitch and roll
     int frontBackAdjust = calculateAdjustment(current.pitch, targetPitch);
     int leftRightAdjust = calculateAdjustment(current.roll, targetRoll);
 
     // Apply calculated changes to motors
-    motor.adjustMotorSpeed(MOTOR_FRONT_LEFT, frontBackAdjust + leftRightAdjust);
-    motor.adjustMotorSpeed(MOTOR_FRONT_RIGHT, frontBackAdjust - leftRightAdjust);
-    motor.adjustMotorSpeed(MOTOR_BACK_LEFT, -frontBackAdjust + leftRightAdjust);
-    motor.adjustMotorSpeed(MOTOR_BACK_RIGHT, -frontBackAdjust - leftRightAdjust);
+    motor.adjustMotorSpeed(MOTOR_FRONT_LEFT, frontBackAdjust + leftRightAdjust + thrust);
+    motor.adjustMotorSpeed(MOTOR_FRONT_RIGHT, frontBackAdjust - leftRightAdjust + thrust);
+    motor.adjustMotorSpeed(MOTOR_BACK_LEFT, -frontBackAdjust + leftRightAdjust + thrust);
+    motor.adjustMotorSpeed(MOTOR_BACK_RIGHT, -frontBackAdjust - leftRightAdjust + thrust);
 }
 
 int FlightController::calculateAdjustment(double current, double target)
 {
     double diff = target - current;
 
-    // Adjust relative speeds of motors
+    // Adjust relative speeds of motors - magic sauce
     return diff * MOTOR_ADJUSTMENT_CONSTANT;
 }
