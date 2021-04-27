@@ -31,10 +31,10 @@ void FlightController::update(State current)
     }
 
     // Apply calculated changes to motors
-    // motor.setMotorSpeed(MOTOR_FRONT_LEFT, frontBackAdjust + leftRightAdjust + thrust);
-    // motor.setMotorSpeed(MOTOR_FRONT_RIGHT, frontBackAdjust - leftRightAdjust + thrust);
+    motor.setMotorSpeed(MOTOR_FRONT_LEFT, frontBackAdjust + leftRightAdjust + thrust);
+    motor.setMotorSpeed(MOTOR_FRONT_RIGHT, frontBackAdjust - leftRightAdjust + thrust);
     motor.setMotorSpeed(MOTOR_BACK_LEFT, -frontBackAdjust + leftRightAdjust + thrust);
-    // motor.setMotorSpeed(MOTOR_BACK_RIGHT, -frontBackAdjust - leftRightAdjust + thrust);
+    motor.setMotorSpeed(MOTOR_BACK_RIGHT, -frontBackAdjust - leftRightAdjust + thrust);
 }
 
 int FlightController::calculateAdjustment(double current, double target)

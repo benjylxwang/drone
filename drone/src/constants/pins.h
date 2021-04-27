@@ -19,5 +19,8 @@
 #define RF_MISO_RX_PIN 4
 #define RF_CSN_PIN 5
 
+// == Fake controller
+#define POTENTIOMETER_READ_PIN A0
+
 
 #endif
