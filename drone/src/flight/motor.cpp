@@ -15,26 +15,30 @@ void Motor::setup()
 {
     for (int i = 0; i < MOTOR_COUNT; i++)
     {
-        pinMode(pins[i], OUTPUT);
-        setMotorSpeed(i, 0);
+        #if VERBOSE
+        Serial.print("Initializing ESC ");
+        Serial.print(i);
+        Serial.println("...");
+        #endif
+        escs[i].attach(pins[i], ESC_MIN_MICROSECONDS, ESC_MAX_MICROSECONDS);
     }
 }
 
 void Motor::setMotorSpeed(byte motor, int speed)
 {
-    int smoothedSpeed = smoothing(speed, previousSpeeds[motor], MOTOR_SMOOTHING_FACTOR);
-    analogWrite(pins[motor], smoothedSpeed);
-    previousSpeeds[motor] = speeds[motor];
-    speeds[motor] = smoothedSpeed;
+    // Cap values
+    if (speed > ESC_MAX_THROTTLE) speed = ESC_MAX_THROTTLE;
+    else if (speed < ESC_MIN_THROTTLE) speed = ESC_MIN_THROTTLE;
+
+    escs[motor].write(speed);
+    speeds[motor] = speed;
+    #if VERBOSE
+    Serial.print("Motor Speed: ");
+    Serial.println(speed);
+    #endif
 }
 
 int Motor::getMotorSpeed(byte motor)
 {
     return speeds[motor];
-}
-
-void Motor::adjustMotorSpeed(byte motor, int speedChange)
-{
-    int current = speeds[motor];
-    setMotorSpeed(motor, current + speedChange);
 }

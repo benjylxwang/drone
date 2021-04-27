@@ -20,17 +20,21 @@ void FlightController::update(State current)
     targetRoll = map(current.signal->rightMotion, -512, 511, LEFT_TARGET_ANGLE, RIGHT_TARGET_ANGLE);
 
     // Up down adjustment
-    int thrust = map(current.signal->upMotion, -512, 512, -MOTOR_MAX_UPWARDS_CHANGE, MOTOR_MAX_UPWARDS_CHANGE);
+    int thrust = map(current.signal->upMotion, -512, 512, ESC_MIN_THROTTLE, ESC_MAX_THROTTLE);
 
     // Adjust motors based on current state to be closer to target pitch and roll
-    int frontBackAdjust = calculateAdjustment(current.pitch, targetPitch);
-    int leftRightAdjust = calculateAdjustment(current.roll, targetRoll);
+    int frontBackAdjust = 0;
+    int leftRightAdjust = 0;
+    if (thrust > ESC_MIN_THROTTLE) {
+        frontBackAdjust = calculateAdjustment(current.pitch, targetPitch);
+        leftRightAdjust = calculateAdjustment(current.roll, targetRoll);
+    }
 
     // Apply calculated changes to motors
-    motor.adjustMotorSpeed(MOTOR_FRONT_LEFT, frontBackAdjust + leftRightAdjust + thrust);
-    motor.adjustMotorSpeed(MOTOR_FRONT_RIGHT, frontBackAdjust - leftRightAdjust + thrust);
-    motor.adjustMotorSpeed(MOTOR_BACK_LEFT, -frontBackAdjust + leftRightAdjust + thrust);
-    motor.adjustMotorSpeed(MOTOR_BACK_RIGHT, -frontBackAdjust - leftRightAdjust + thrust);
+    // motor.setMotorSpeed(MOTOR_FRONT_LEFT, frontBackAdjust + leftRightAdjust + thrust);
+    // motor.setMotorSpeed(MOTOR_FRONT_RIGHT, frontBackAdjust - leftRightAdjust + thrust);
+    motor.setMotorSpeed(MOTOR_BACK_LEFT, -frontBackAdjust + leftRightAdjust + thrust);
+    // motor.setMotorSpeed(MOTOR_BACK_RIGHT, -frontBackAdjust - leftRightAdjust + thrust);
 }
 
 int FlightController::calculateAdjustment(double current, double target)

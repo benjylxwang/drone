@@ -32,17 +32,19 @@ void setup()
     #endif
     sensors.setup();
     flightControl.setup();
-    // controller.setup();
+    controller.setup();
 }
 
 void loop()
 {
+    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
     #if VERBOSE
         Serial.println(VERSION);
     #endif
     // Read sensors first to get correct state object
     sensors.update(gState);
     gState.print();
+    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
 
     // Get controls
     controller.update(gState);

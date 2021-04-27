@@ -2,6 +2,7 @@
 #define MOTOR_H
 
 #include <Arduino.h>
+#include <Servo.h>
 #include "../state.h"
 #include "../../constants.h"
 
@@ -13,11 +14,10 @@ public:
     void setup();
     void setMotorSpeed(byte motor, int speed);
     int getMotorSpeed(byte motor);
-    void adjustMotorSpeed(byte motor, int speedChange);
-
 
 private:
     byte pins[MOTOR_COUNT];
+    Servo escs[MOTOR_COUNT];
     int speeds[MOTOR_COUNT];
     int previousSpeeds[MOTOR_COUNT];
 };

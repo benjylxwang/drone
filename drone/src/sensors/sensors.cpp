@@ -42,15 +42,11 @@ void Sensors::setup()
 
 void Sensors::update(State &state)
 {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
     readGyro(state);
 
     // Run pressure update
-    readPressure(state);
-    state.altitude = pressure.altitude(state.pressure, baseline);
-    delay(50);
-    digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
-    delay(50);
+    // readPressure(state);
+    // state.altitude = pressure.altitude(state.pressure, baseline);
 }
 
 void Sensors::readGyro(State &state)
