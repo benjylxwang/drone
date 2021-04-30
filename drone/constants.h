@@ -4,9 +4,9 @@
 #include "src/constants/pins.h"
 #include "src/constants/settings.h"
 
-#define VERSION "Drone v0.0.1"
+#define VERSION "Drone v0.0.2"
 #define VERBOSE 1
 #define SERIAL_BAUD_RATE 115200
-#define USE_FAKE_CONTROLLER 1
+#define USE_FAKE_CONTROLLER 0
 
 #endif

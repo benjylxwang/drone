@@ -8,8 +8,8 @@
 
 // == Motors - Throttle
 #define MOTOR_FRONT_LEFT_PIN 18
-#define MOTOR_FRONT_RIGHT_PIN 19
-#define MOTOR_BACK_LEFT_PIN 20
+#define MOTOR_FRONT_RIGHT_PIN 20
+#define MOTOR_BACK_LEFT_PIN 19
 #define MOTOR_BACK_RIGHT_PIN 21
 
 // == RF Receiver - SPI Pins
@@ -20,7 +20,7 @@
 #define RF_CSN_PIN 5
 
 // == Fake controller
-#define POTENTIOMETER_READ_PIN A0
+#define POTENTIOMETER_READ_PIN A1
 
 
 #endif

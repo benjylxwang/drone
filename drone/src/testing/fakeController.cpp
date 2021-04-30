@@ -38,4 +38,5 @@ void FakeController::update(State& state) {
 
     int input = analogRead(POTENTIOMETER_READ_PIN);
     state.signal->upMotion = map(input, 0, 4095, -512, 511); // slowly going upwards
+    Serial.println(input);
 }
