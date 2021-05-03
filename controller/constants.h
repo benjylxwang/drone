@@ -20,6 +20,6 @@
 
 // ==== RF Sender Settings
 #define RF_CONTROLLER_ID 0
-#define RF_DRONE_ID 3
+#define RF_DRONE_ID 1
 
 #endif

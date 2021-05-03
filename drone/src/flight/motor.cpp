@@ -32,10 +32,6 @@ void Motor::setMotorSpeed(byte motor, int speed)
 
     escs[motor].write(speed);
     speeds[motor] = speed;
-    #if VERBOSE
-    Serial.print("Motor Speed: ");
-    Serial.println(speed);
-    #endif
 }
 
 int Motor::getMotorSpeed(byte motor)

@@ -20,7 +20,7 @@ void FlightController::update(State current)
     targetRoll = map(current.signal->rightMotion, -512, 511, LEFT_TARGET_ANGLE, RIGHT_TARGET_ANGLE);
 
     // Up down adjustment
-    int thrust = map(current.signal->upMotion, -512, 512, ESC_MIN_THROTTLE, ESC_MAX_THROTTLE);
+    int thrust = map(current.signal->upMotion, -512, 511, ESC_MIN_THROTTLE, ESC_MAX_THROTTLE);
 
     // Adjust motors based on current state to be closer to target pitch and roll
     int frontBackAdjust = 0;

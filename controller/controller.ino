@@ -50,6 +50,12 @@ void loop()
     Serial.print(state.roll);
     Serial.print(" Altitude: ");
     Serial.print(state.altitude);
+    Serial.print(" Throttle: ");
+    Serial.print(input.throttle);
+    Serial.print(" Turning: ");
+    Serial.print(input.turning);
+    Serial.print(" Vertical: ");
+    Serial.print(input.vertical);
     Serial.println();
 #endif
 

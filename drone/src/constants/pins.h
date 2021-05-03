@@ -13,7 +13,7 @@
 #define MOTOR_BACK_RIGHT_PIN 21
 
 // == RF Receiver - SPI Pins
-#define RF_CE_PIN 1
+#define RF_CE_PIN 6
 #define RF_SCK_PIN 2
 #define RF_MOSI_TX_PIN 3
 #define RF_MISO_RX_PIN 4

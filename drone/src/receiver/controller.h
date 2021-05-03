@@ -16,6 +16,7 @@ public:
 private:
     NRFLite radio;
     uint8_t success;
+    unsigned long lastReceived;
 
     // Pins
     byte cePin;

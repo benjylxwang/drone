@@ -3,8 +3,9 @@
 
 // ===== Controller Settings
 #define RF_CONTROLLER_ID 0
-#define RF_DRONE_ID 3
+#define RF_DRONE_ID 1
 #define CONTROLLER_ANALOG_MAX_VALUE 512
+#define CONTROLLER_TIMEOUT_PERIOD_MILLISECONDS 2000UL
 
 // ===== Motor Settings
 #define MOTOR_COUNT 4
