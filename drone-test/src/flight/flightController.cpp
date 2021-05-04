@@ -17,7 +17,7 @@ void FlightController::setup()
     rollI = 0;
 }
 
-void FlightController::update(State current, unsigned long deltaTime)
+void FlightController::update(State current, unsigned long deltaTime, double PITCH_KP, double PITCH_KI, double PITCH_KD, double ROLL_KP, double ROLL_KI, double ROLL_KD)
 {
     // Set target pitch and roll based on left/right/front/back commands
     targetPitch = map(current.signal->forwardsMotion, -512.0, 511.0, BACKWARD_TARGET_ANGLE, FORWARD_TARGET_ANGLE);

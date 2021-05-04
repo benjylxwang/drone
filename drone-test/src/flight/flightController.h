@@ -11,7 +11,7 @@ public:
     FlightController();
 
     void setup();
-    void update(State current, unsigned long deltaTime);
+    void update(State current, unsigned long deltaTime, double PITCH_KP, double PITCH_KI, double PITCH_KD, double ROLL_KP, double ROLL_KI, double ROLL_KD);
 private:
     Motor motor;
 

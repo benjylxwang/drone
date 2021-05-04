@@ -27,12 +27,6 @@
 #define BACKWARD_TARGET_ANGLE -FORWARD_TARGET_ANGLE
 #define RIGHT_TARGET_ANGLE 10.0
 #define LEFT_TARGET_ANGLE -RIGHT_TARGET_ANGLE
-#define PITCH_KP 0.72
-#define PITCH_KI 0.006
-#define PITCH_KD 1.22
-#define ROLL_KP 0.7
-#define ROLL_KI 0.006
-#define ROLL_KD 1.2
 
 // ==== Sensor Settings
 #define ALTITUDE 50.0

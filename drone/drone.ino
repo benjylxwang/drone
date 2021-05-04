@@ -25,6 +25,8 @@ FakeController controller;
 Controller controller(RF_CE_PIN, RF_CSN_PIN);
 #endif
 
+unsigned long startTime;
+
 void setup()
 {
     #if VERBOSE
@@ -34,18 +36,29 @@ void setup()
     sensors.setup();
     flightControl.setup();
     controller.setup();
+
+    startTime = millis();
 }
 
 void loop()
-{
+{   
+    unsigned long deltaTime = millis() - startTime;
+    startTime = millis();
+
     digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
     // Read sensors first to get correct state object
-    sensors.update(gState);
+    sensors.update(gState, deltaTime);
     digitalWrite(LED_BUILTIN, LOW); // turn the LED off by making the voltage LOW
+    gState.print();
 
     // Get controls
     controller.update(gState);
 
     // Then reflect changes in state in hardware
-    flightControl.update(gState);
+    flightControl.update(gState, deltaTime);
+
+    #if VERBOSE
+        Serial.print(". ");
+        Serial.println(VERSION);
+    #endif
 }
