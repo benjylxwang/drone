@@ -1,6 +1,6 @@
 #include "IndicatorControl.h"
 
-IndicatorControl::IndicatorControl(byte leftPin_, byte rightPin_, byte mode_ = INPUT, bool invert_ = false)
+IndicatorControl::IndicatorControl(byte leftPin_, byte rightPin_, byte mode_/* = INPUT*/, bool invert_ /*= false*/)
 {
     leftPin = leftPin_;
     rightPin = rightPin_;

@@ -17,22 +17,22 @@
 #define MOTOR_SMOOTHING_FACTOR 0.9
 
 // ===== ESC Settings
-#define ESC_MIN_THROTTLE		        0
-#define ESC_MAX_THROTTLE		        180
 #define ESC_MIN_MICROSECONDS 1000
 #define ESC_MAX_MICROSECONDS 2000
+#define ESC_MIN_THROTTLE ESC_MIN_MICROSECONDS
+#define ESC_MAX_THROTTLE ESC_MAX_MICROSECONDS
 
 // ==== Pitch/Roll settings
 #define FORWARD_TARGET_ANGLE 10.0
 #define BACKWARD_TARGET_ANGLE -FORWARD_TARGET_ANGLE
 #define RIGHT_TARGET_ANGLE 10.0
 #define LEFT_TARGET_ANGLE -RIGHT_TARGET_ANGLE
-#define PITCH_KP 0.72
-#define PITCH_KI 0.006
-#define PITCH_KD 1.22
-#define ROLL_KP 0.7
-#define ROLL_KI 0.006
-#define ROLL_KD 1.2
+#define PITCH_KP 0.21
+#define PITCH_KI 0.0001
+#define PITCH_KD 0.00001
+#define ROLL_KP 0.17
+#define ROLL_KI 0.008
+#define ROLL_KD 0.01
 
 // ==== Sensor Settings
 #define ALTITUDE 50.0

@@ -8,5 +8,6 @@
 #define VERBOSE 1
 #define SERIAL_BAUD_RATE 115200
 #define USE_FAKE_CONTROLLER 0
+#define CONTROLLER_TEST_MODE 1
 
 #endif

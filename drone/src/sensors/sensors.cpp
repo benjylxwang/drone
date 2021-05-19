@@ -27,18 +27,18 @@ void Sensors::setup()
     calibrate();
 
     // Setup pressure senesor
-    if (pressure.begin())
-    {
-        Serial.println("BMP180 init success");
-        State temp;
-        baseline = readPressure(temp);
-    }
-    else
-    {
+    // if (pressure.begin())
+    // {
+    //     Serial.println("BMP180 init success");
+    //     State temp;
+    //     baseline = readPressure(temp);
+    // }
+    // else
+    // {
 
-        while (1)
-            Serial.println("BMP180 init fail\n\n"); // Pause forever.
-    }
+    //     while (1)
+    //         Serial.println("BMP180 init fail\n\n"); // Pause forever.
+    // }
 }
 
 void Sensors::update(State &state, unsigned long deltaTime)
@@ -54,7 +54,7 @@ void Sensors::update(State &state, unsigned long deltaTime)
 
 void Sensors::calibrate()
 {
-    mpu.calcOffsets();
+    // mpu.calcOffsets();
 }
 
 double Sensors::readPressure(State& state)

@@ -27,6 +27,22 @@ void Sender::send(Input& input, State& state)
     *i16 = input.turning;
     i16++;
     *i16 = input.vertical;   
+    
+    #if MANUAL_TUNING_MODE
+    float* f = (float*) &data[6];
+    *f = input.pitchP;
+    f++;
+    *f = input.pitchI;
+    f++;
+    *f = input.pitchD;
+    f++;
+    *f = input.rollP;
+    f++;
+    *f = input.rollI;
+    f++;
+    *f = input.rollD;
+    f++;
+    #endif
 
     // Send payload
     radio.send(RF_DRONE_ID, &data, sizeof(data));

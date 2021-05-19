@@ -2,6 +2,7 @@
 #define CONSTANTS_H
 
 #define VERBOSE 1
+#define MANUAL_TUNING_MODE 1
 
 // ===== PINS =====
 // RF Sender

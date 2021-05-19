@@ -40,8 +40,13 @@ void FlightController::update(State current, unsigned long deltaTime)
     double rollPID = 0;
     double pitchPID = 0;
     if (thrust > ESC_MIN_THROTTLE) {
-        pitchPID = calculateAdjustment(current.angleX, targetPitch, PITCH_KP, PITCH_KI, PITCH_KD, pitchI, pitchError, deltaTime);
-        rollPID = calculateAdjustment(current.angleY, targetRoll, ROLL_KP, ROLL_KI, ROLL_KD, rollI, rollError, deltaTime);
+        #if CONTROLLER_TEST_MODE 
+            pitchPID = calculateAdjustment(current.angleX, targetPitch, current.signal->pitchP, current.signal->pitchI, current.signal->pitchD, pitchI, pitchError, deltaTime);
+            rollPID = calculateAdjustment(current.angleY, targetRoll, current.signal->rollP, current.signal->rollI, current.signal->rollD, rollI, rollError, deltaTime);
+        #else
+            pitchPID = calculateAdjustment(current.angleX, targetPitch, PITCH_KP, PITCH_KI, PITCH_KD, pitchI, pitchError, deltaTime);
+            rollPID = calculateAdjustment(current.angleY, targetRoll, ROLL_KP, ROLL_KI, ROLL_KD, rollI, rollError, deltaTime);
+        #endif
 
         #if VERBOSE
             Serial.print("pI: ");
@@ -57,14 +62,23 @@ void FlightController::update(State current, unsigned long deltaTime)
     }
 
     // Apply calculated changes to motors
-    motor.setMotorSpeed(MOTOR_FRONT_LEFT, thrust + rollPID - pitchPID);
-    motor.setMotorSpeed(MOTOR_FRONT_RIGHT, thrust - rollPID - pitchPID);
-    motor.setMotorSpeed(MOTOR_BACK_LEFT, thrust + rollPID + pitchPID);
-    motor.setMotorSpeed(MOTOR_BACK_RIGHT, thrust - rollPID + pitchPID);
+    motor.setMotorSpeed(MOTOR_FRONT_LEFT, thrust + rollPID + pitchPID);
+    motor.setMotorSpeed(MOTOR_FRONT_RIGHT, thrust - rollPID + pitchPID);
+    motor.setMotorSpeed(MOTOR_BACK_LEFT, thrust + rollPID - pitchPID);
+    motor.setMotorSpeed(MOTOR_BACK_RIGHT, thrust - rollPID - pitchPID);
 }
 
 double FlightController::calculateAdjustment(double current, double target, double kp, double ki, double kd, double& previousI, double& prevError, unsigned long deltaTime)
 {
+    #if VERBOSE and CONTROLLER_TEST_MODE
+        Serial.print("P: ");
+        Serial.print( kp);
+        Serial.print(" I: ");
+        Serial.print(ki);
+        Serial.print(" D: ");
+        Serial.print(kd);
+        Serial.print(" ");
+    #endif
     // PID loop - proportional integral derivative
     double error = target - current;
     

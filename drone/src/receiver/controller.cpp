@@ -39,7 +39,7 @@ void Controller::update(State &state)
         {
             // Thrust to zero
             state.signal->upMotion = -CONTROLLER_ANALOG_MAX_VALUE;           
-            Serial.println("!!! --- Safety cutout --- !!!");
+            Serial.print("!!! --- Safety cutout --- !!!");
         }
     } else {
         #if VERBOSE
@@ -62,6 +62,17 @@ void Controller::parseData(State &state)
     state.signal->rightMotion = *motion;
     motion++;
     state.signal->upMotion = *motion;
+
+    #if CONTROLLER_TEST_MODE
+    // PID constants
+    float* f = (float*) &data[6];
+    state.signal->pitchP = *f++;
+    state.signal->pitchI = *f++;
+    state.signal->pitchD = *f++;
+    state.signal->rollP = *f++;
+    state.signal->rollI = *f++;
+    state.signal->rollD = *f++;
+    #endif
 
 #if VERBOSE
     Serial.print("Motion: (");

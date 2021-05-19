@@ -7,7 +7,9 @@ An Arduino project for a fully functioning drone
 Communication between controller and drone is over the nRF24L01 modules. These allow for the sending and receiving of a 32 byte payload.
 
 ### Controller to Drone
-The following is a list of all the controls needed and their position in the payload:
+The following is a list of all the controls needed and their position in the payload.
+
+Note that items marked with * are only sent in manual tuning mode.
 
 <table>
     <thead>
@@ -43,7 +45,91 @@ The following is a list of all the controls needed and their position in the pay
             <td>5</td>
         </tr>
         <tr>
-            <td>6-31</td>
+            <td>6</td>
+            <td rowspan=4>Pitch P constant*</td>
+            <td rowspan=4>float</td>
+        </tr>
+        <tr>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td rowspan=4>Pitch I constant*</td>
+            <td rowspan=4>float</td>
+        </tr>
+        <tr>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td rowspan=4>Pitch D constant*</td>
+            <td rowspan=4>float</td>
+        </tr>
+        <tr>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td rowspan=4>Roll P constant*</td>
+            <td rowspan=4>float</td>
+        </tr>
+        <tr>
+            <td>19</td>
+        </tr>
+        <tr>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td rowspan=4>Roll I constant*</td>
+            <td rowspan=4>float</td>
+        </tr>
+        <tr>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td rowspan=4>Roll D constant*</td>
+            <td rowspan=4>float</td>
+        </tr>
+        <tr>
+            <td>27</td>
+        </tr>
+        <tr>
+            <td>28</td>
+        </tr>
+        <tr>
+            <td>29</td>
+        </tr>
+        <tr>
+            <td>30-31</td>
             <td><i>Not in use</i></td>
             <td></td>
         </tr>

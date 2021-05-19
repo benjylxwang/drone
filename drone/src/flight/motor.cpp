@@ -37,7 +37,7 @@ void Motor::setMotorSpeed(byte motor, int speed)
     if (speed > ESC_MAX_THROTTLE) speed = ESC_MAX_THROTTLE;
     else if (speed < ESC_MIN_THROTTLE) speed = ESC_MIN_THROTTLE;
 
-    escs[motor].write(speed);
+    escs[motor].writeMicroseconds(speed);
     speeds[motor] = speed;
 }
 
