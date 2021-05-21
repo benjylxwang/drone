@@ -54,7 +54,7 @@ void Sensors::update(State &state, unsigned long deltaTime)
 
 void Sensors::calibrate()
 {
-    // mpu.calcOffsets();
+    mpu.calcOffsets();
 }
 
 double Sensors::readPressure(State& state)
